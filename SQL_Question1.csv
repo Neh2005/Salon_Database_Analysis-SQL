@@ -1,0 +1,16 @@
+-- Question1: Write a query to output the Customers contact details along with a column that contains “Yes” if they are a member and 
+-- “No” if they are not. You should output the column headings as specified here: ‘Customer Name’, Telephone Number’, 
+-- ‘Email Address’, ’Member’. 
+
+  SELECT 
+    Customers.CustomerName AS "Customer Name", 
+    Customers.TelNo AS "Telephone Number", 
+    Customers.Email AS "Email Address", 
+    CASE  
+        WHEN MembershipLevel IS "GOLD" THEN "YES" 
+        WHEN MembershipLevel IS "SILVER" THEN "YES" 
+        WHEN MembershipLevel IS "BRONZE" THEN "YES" 
+        ELSE "NO" 
+    END AS Member 
+FROM Customers  
+LEFT JOIN CustomerMembership ON Customers.CustomerId=CustomerMembership.CustomerID;
