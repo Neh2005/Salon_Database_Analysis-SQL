@@ -1,0 +1,23 @@
+-- Question3:  Find which customer has spent the most on treatments overall at the salon. Output the customer’s name and total amount spent. You should only output one result.
+
+  SELECT DISTINCT Customers.CustomerName, 
+CASE 
+        WHEN CustomerMembership.MembershipLevel IS 'GOLD' THEN  
+        printf("%.2f",(SUM(Treatment.TreatmentCost)-SUM(Treatment.TreatmentCost)* 
+        (SELECT costAdjustment FROM Membership WHERE MembershipLevel='GOLD')/100)) 
+        WHEN CustomerMembership.MembershipLevel IS 'SILVER' THEN   
+        printf("%.2f",(SUM(Treatment.TreatmentCost)-SUM(Treatment.TreatmentCost)* 
+       (SELECT costAdjustment FROM Membership WHERE MembershipLevel='SILVER')/100)) 
+        WHEN CustomerMembership.MembershipLevel IS 'BRONZE' THEN  
+        printf("%.2f",(SUM(Treatment.TreatmentCost)-SUM(Treatment.TreatmentCost)* 
+       (SELECT costAdjustment FROM Membership WHERE MembershipLevel='BRONZE')/100)) 
+        ELSE printf("%.2f",SUM(Treatment.TreatmentCost))  
+    END AS "Amount Spent" 
+FROM CustomerBookings 
+inner join Treatment on CustomerBookings.SpaTreatmentId=Treatment.SpaTreatmentId 
+inner join Customers on Customers.CustomerId=CustomerBookings.Customer_ID 
+left join CustomerMembership on Customers.CustomerId=CustomerMembership.CustomerID 
+left join Membership on CustomerMembership.MembershipLevel=Membership.MembershipLevel 
+GROUP BY 
+CustomerBookings.Customer_ID,CustomerMembership.MembershipLevel,Membership.MembershipLevel  
+ORDER BY SUM(Treatment.TreatmentCost) desc LIMIT 1; 
