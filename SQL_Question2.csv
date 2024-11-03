@@ -1,0 +1,15 @@
+--  Find which customer has visited the salon the most. Output their name, contact details and the total number of visits.
+
+   SELECT   
+    Customer_ID,  
+    Customers.CustomerName,  
+    Customers.TelNo,  
+    Customers.Email,  
+    MAX (cnt) AS "Total Number of Visits" 
+FROM ( 
+    SELECT  
+        DISTINCT Customer_ID, BookingDate, 
+        COUNT (*) AS cnt 
+    FROM CustomerBookings 
+    GROUP BY Customer_ID) 
+INNER JOIN Customers ON Customers.CustomerId=Customer_ID;
