@@ -1,0 +1,51 @@
+--Customers Table
+CREATE TABLE Customers ( 
+    CustomerId   INT PRIMARY KEY, 
+    CustomerName VARCHAR (50), 
+    TelNo        INT, 
+    Email        VARCHAR (50)  
+    );
+
+--Customer Bookings Table
+ CREATE TABLE CustomerBookings ( 
+    Customer_ID    INT NOT NULL 
+    REFERENCES Customers (CustomerId) MATCH SIMPLE, 
+    SpaTreatmentID INT NOT NULL 
+    REFERENCES Treatment (SpaTreatmentID) MATCH SIMPLE, 
+    BookingDate    TEXT NOT NULL, 
+    BookingTime    DATE NOT NULL, 
+    PRIMARY KEY ( 
+        Customer_ID, 
+        SpaTreatmentID, 
+        BookingDate 
+    ) 
+    ); 
+
+--Spa Treatment Table
+CREATE TABLE Treatment ( 
+    SpaTreatmentId INT       NOT NULL PRIMARY KEY, 
+    SpaCategory    VARCHAR (50)   NOT NULL, 
+    Description    VARCHAR (50)   NOT NULL, 
+    TreatmentTime DATE           NOT NULL, 
+    TreatmentCost DECIMAL (6, 2) NOT NULL 
+    ); 
+ 
+--Customer Membership Table
+ CREATE TABLE CustomerMembership ( 
+    CustomerID INT NOT NULL 
+    REFERENCES Customers (CustomerId) MATCH SIMPLE, 
+    MembershipLevel     VARCHAR (25)   NOT NULL, 
+    MembershipFee       DECIMAL (6, 2) NOT NULL, 
+    MembershipStartDate TEXT           NOT NULL, 
+    PRIMARY KEY ( 
+        CustomerID, 
+         
+    ) 
+    ); 
+
+--Lookup Table(Membership)
+     CREATE TABLE Membership 
+    MembershipLevel VARCHAR (25) NOT NULL PRIMARY KEY, 
+    CostAdjustment   DOUBLE       NOT NULL, 
+    MembershipFee   DECIMAL (6, 2) NOT NULL 
+    ); 
