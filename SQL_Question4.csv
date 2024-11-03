@@ -1,0 +1,26 @@
+-- Question4:   For all customers that are not a member, write a query to output the customer name and the total each customer has spent 
+-- at the salon. You should also include what this total would be if they were a member – for each level; Bronze, Silver and Gold. 
+
+  SELECT  
+    Customers.CustomerName AS "Customer Name", 
+    Amount AS "Total Amount Spent", 
+    (SELECT  
+        printf("%.2f",(Amount - Amount * (SELECT costAdjustment 
+        FROM Membership WHERE MembershipLevel='BRONZE')/100))) AS "Total BRONZE", 
+    (SELECT  
+        printf("%.2f",(Amount - Amount * (SELECT costAdjustment  
+        FROM Membership WHERE MembershipLevel='SILVER')/100))) AS "Total SILVER", 
+    (SELECT  
+        printf("%.2f",(Amount - Amount * (SELECT costAdjustment  
+        FROM Membership WHERE MembershipLevel='GOLD')/100))) AS "Total GOLD" 
+ 
+FROM( 
+    SELECT DISTINCT Customers.CustomerName, 
+        printf("%.2f",SUM(Treatment.TreatmentCost)) AS Amount 
+    FROM CustomerBookings  
+        INNER JOIN Treatment ON CustomerBookings.SpaTreatmentId=Treatment.SpaTreatmentId 
+        INNER JOIN Customers ON Customers.CustomerId=CustomerBookings.Customer_ID   
+        LEFT JOIN CustomerMembership ON Customers.CustomerId=CustomerMembership.CustomerID  
+        WHERE MembershipLevel IS NULL 
+    GROUP BY CustomerBookings.Customer_ID  
+    ORDER BY SUM(Treatment.TreatmentCost)); 
