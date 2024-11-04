@@ -51,11 +51,6 @@ The analysis addresses the following strategic questions to provide insights int
 
 ## 🚀 Getting Started
 
-### 1. Clone the Repository
-   ```bash
-      git clone https://github.com/Neh2005/Salon_Database_Analysis-SQL.git
-      cd salon-database-analysis.
----
 
 ## 2. Set Up Database
 
