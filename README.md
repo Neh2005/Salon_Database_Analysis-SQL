@@ -49,8 +49,15 @@ The analysis addresses the following strategic questions to provide insights int
      
 ---
 
+
 ## 🚀 Getting Started
 
+## 1. Clone the repository
+
+git clone https://github.com/Neh2005/Salon_Database_Analysis-SQL.git
+cd salon-database-analysis
+
+---
 
 ## 2. Set Up Database
 
@@ -60,7 +67,7 @@ Run `SQL_tables.csv` to set up the necessary tables for the analysis. This estab
 
 ## 3. Execute Analysis Queries
 
-Run `3_analysis_queries.sql` to obtain insights on customer spending, membership value, and appointment patterns.
+Run queries in `SQL_Queries` folder to obtain insights on customer spending, membership value, and appointment patterns.
 
 ---
 
