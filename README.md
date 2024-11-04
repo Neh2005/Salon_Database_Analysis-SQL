@@ -53,23 +53,26 @@ The analysis addresses the following strategic questions to provide insights int
 
 ### 1. Clone the Repository
    ```bash
-   git clone https://github.com/Neh2005/Salon_Database_Analysis-SQL.git
-   cd salon-database-analysis
+      git clone https://github.com/Neh2005/Salon_Database_Analysis-SQL.git
+      cd salon-database-analysis.
+---
 
-### 2. Set Up Database
-   ```bash
-   Run `SQL_tables.csv` to set up the necessary tables for the analysis. This establishes the data structure required for the salon database.
+## 2. Set Up Database
 
-### 3. Execute Analysis Queries
-   ```bash
-   Run `3_analysis_queries.sql` to obtain insights on customer spending, membership value, and appointment patterns.
+Run `SQL_tables.csv` to set up the necessary tables for the analysis. This establishes the data structure required for the salon database.
+
+---
+
+## 3. Execute Analysis Queries
+
+Run `3_analysis_queries.sql` to obtain insights on customer spending, membership value, and appointment patterns.
 
 ---
 
 ## 🗂️ File Structure
 
 - **sql_queries**: Contains SQL scripts to set up the database, analyze the data, and optionally clean up after.
-- **visualizations**: Stores python codes for forming graphs that visually represent the key findings from the analysis.
+- **visualizations**: Stores Python code for generating graphs that visually represent the key findings from the analysis.
 
 ---
 
